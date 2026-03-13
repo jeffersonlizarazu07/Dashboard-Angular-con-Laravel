@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -46,7 +47,10 @@ class AuthController extends Controller
             ], 401);
         }
 
-        $request->session()->regenerate();
+        // Regenera session if the version is enable (SPA with cookies)
+        if ($request->hasSession()) {
+            $request->session()->regenerate();
+        }
 
         return response()->json([
             'message' => 'Inicio de sesión exitoso.',
@@ -62,13 +66,15 @@ class AuthController extends Controller
      */
     public function logout(Request $request): JsonResponse
     {
-        $this->authService->logout();
+        Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        if ($request->hasSession()) {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
 
         return response()->json([
-            'message' => 'Sesión cerrada exitosamente.',
+            'message' => 'Sesión cerrada correctamente.',
         ]);
     }
 

@@ -49,6 +49,6 @@ class AuthService
      */
     public function logout(): void
     {
-        Auth::guard('web')->logout();
+        Auth::guard('sanctum')->logout();
     }
 }
