@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
-()
 Route::prefix('auth')->group(function () {
     require __DIR__.'/auth.php';
 });
