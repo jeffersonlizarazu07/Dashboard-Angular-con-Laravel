@@ -3,7 +3,8 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectionStrategy,
-  signal
+  signal,
+  inject
 } from '@angular/core';
 import {
   FormBuilder,
@@ -27,7 +28,12 @@ const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  private fb = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private userService = inject(UserService);
+
   readonly currentUser = this.authService.currentUser;
+
   isSubmitting = signal(false);
   successMessage = signal('');
   errorMessage = signal('');
@@ -35,12 +41,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   profileForm!: FormGroup;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private userService: UserService
-  ) { }
 
   ngOnInit(): void {
     this.buildForm();
@@ -56,9 +56,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
    */
   private buildForm(): void {
     const user = this.currentUser();
+
     this.profileForm = this.fb.group({
-      name: [user?.name ?? '', [Validators.required, Validators.minLength(3)]],
-      email: [user?.email ?? '', [Validators.required, Validators.email]],
+      name:     [user?.name ?? '', [Validators.required, Validators.minLength(3)]],
+      email:    [user?.email ?? '', [Validators.required, Validators.email]],
       password: ['', [Validators.pattern(passwordPattern)]]
     });
   }
@@ -67,6 +68,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
    * Submit profile update.
    */
   onSubmit(): void {
+
     if (this.profileForm.invalid) {
       this.profileForm.markAllAsTouched();
       return;
@@ -79,25 +81,31 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.errorMessage.set('');
 
     const formValue = { ...this.profileForm.value };
-    if (!formValue.password) delete formValue.password;
 
-    this.userService.update(user.id, formValue).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.isSubmitting.set(false);
-        this.successMessage.set('Perfil actualizado correctamente.');
-        this.profileForm.get('password')?.setValue('');
-        setTimeout(() => this.successMessage.set(''), 3000);
-      },
-      error: (err) => {
-        this.isSubmitting.set(false);
-        this.errorMessage.set(err.error?.message ?? 'Error al actualizar perfil.');
-      }
-    });
+    if (!formValue.password) {
+      delete formValue.password;
+    }
+
+    this.userService.update(user.id, formValue)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.isSubmitting.set(false);
+          this.successMessage.set('Perfil actualizado correctamente.');
+          this.profileForm.get('password')?.setValue('');
+          setTimeout(() => this.successMessage.set(''), 3000);
+        },
+        error: (err) => {
+          this.isSubmitting.set(false);
+          this.errorMessage.set(
+            err.error?.message ?? 'Error al actualizar perfil.'
+          );
+        }
+      });
   }
 
-  get name() { return this.profileForm.get('name'); }
-  get email() { return this.profileForm.get('email'); }
+  get name()     { return this.profileForm.get('name'); }
+  get email()    { return this.profileForm.get('email'); }
   get password() { return this.profileForm.get('password'); }
+
 }

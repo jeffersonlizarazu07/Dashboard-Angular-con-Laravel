@@ -1,11 +1,10 @@
-
-
 import {
   Component,
   OnInit,
   OnDestroy,
   ChangeDetectionStrategy,
-  signal
+  signal,
+  inject
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
@@ -23,6 +22,9 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class CatalogComponent implements OnInit, OnDestroy {
 
+  private productService = inject(ProductService);
+  private cartService = inject(CartService);
+
   products = signal<Product[]>([]);
   isLoading = signal(true);
   errorMessage = signal('');
@@ -32,11 +34,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   readonly itemCount = this.cartService.itemCount;
 
   private destroy$ = new Subject<void>();
-
-  constructor(
-    private productService: ProductService,
-    private cartService: CartService
-  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -51,32 +48,31 @@ export class CatalogComponent implements OnInit, OnDestroy {
    * Load all products from the API.
    */
   private loadProducts(): void {
-    this.productService.getAll().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.products.set(response.products);
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.errorMessage.set('Error al cargar los productos.');
-        this.isLoading.set(false);
-      }
-    });
+    this.productService.getAll()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.products.set(response.products);
+          this.isLoading.set(false);
+        },
+        error: () => {
+          this.errorMessage.set('Error al cargar los productos.');
+          this.isLoading.set(false);
+        }
+      });
   }
 
   /**
    * Add a product to the cart.
-   *
-   * @param product - The product to add
    */
   addToCart(product: Product): void {
+
     this.cartService.addItem({
       product_id: product.id,
       quantity: 1
-    }).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
+    })
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
       next: () => {
         this.successMessage.set(`"${product.name}" agregado al carrito.`);
         setTimeout(() => this.successMessage.set(''), 3000);
@@ -87,4 +83,5 @@ export class CatalogComponent implements OnInit, OnDestroy {
       }
     });
   }
+
 }

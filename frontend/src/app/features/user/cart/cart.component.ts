@@ -3,7 +3,8 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectionStrategy,
-  signal
+  signal,
+  inject
 } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { RouterLink } from '@angular/router';
@@ -20,6 +21,8 @@ import { CartItem } from '../../../core/interfaces/cart.interface';
 })
 export class CartComponent implements OnInit, OnDestroy {
 
+  private cartService = inject(CartService);
+
   isLoading = signal(true);
   isCheckingOut = signal(false);
   errorMessage = signal('');
@@ -31,8 +34,6 @@ export class CartComponent implements OnInit, OnDestroy {
   readonly total = this.cartService.total;
 
   private destroy$ = new Subject<void>();
-
-  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -47,52 +48,52 @@ export class CartComponent implements OnInit, OnDestroy {
    * Load cart data from API.
    */
   private loadCart(): void {
-    this.cartService.loadCart().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: () => this.isLoading.set(false),
-      error: () => {
-        this.errorMessage.set('Error al cargar el carrito.');
-        this.isLoading.set(false);
-      }
-    });
+    this.cartService.loadCart()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => this.isLoading.set(false),
+        error: () => {
+          this.errorMessage.set('Error al cargar el carrito.');
+          this.isLoading.set(false);
+        }
+      });
   }
 
   /**
    * Remove an item from the cart.
-   *
-   * @param item - The cart item to remove
    */
   removeItem(item: CartItem): void {
-    this.cartService.removeItem(item.id).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      error: () => this.errorMessage.set('Error al eliminar el producto.')
-    });
+    this.cartService.removeItem(item.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        error: () => this.errorMessage.set('Error al eliminar el producto.')
+      });
   }
 
   /**
    * Process checkout for all items in the cart.
    */
   checkout(): void {
+
     this.isCheckingOut.set(true);
     this.errorMessage.set('');
 
-    this.cartService.checkout().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.isCheckingOut.set(false);
-        this.successMessage.set(
-          `${response.message} Total pagado: $${response.total}`
-        );
-      },
-      error: (err) => {
-        this.isCheckingOut.set(false);
-        this.errorMessage.set(
-          err.error?.message ?? 'Error al procesar la compra.'
-        );
-      }
-    });
+    this.cartService.checkout()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.isCheckingOut.set(false);
+          this.successMessage.set(
+            `${response.message} Total pagado: $${response.total}`
+          );
+        },
+        error: (err) => {
+          this.isCheckingOut.set(false);
+          this.errorMessage.set(
+            err.error?.message ?? 'Error al procesar la compra.'
+          );
+        }
+      });
   }
+
 }
