@@ -1,0 +1,4621 @@
+{
+  "info": {
+    "_postman_id": "9595db25-ed83-42d4-a8ee-20aa2a4bb7c9",
+    "name": "stock_manager_API",
+    "description": "## Api test for stock manager aplication.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38604799"
+  },
+  "item": [
+    {
+      "name": "Sanctum",
+      "item": [
+        {
+          "name": "CSRF Cookie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                  "",
+                  "if (xsrfCookie) {",
+                  "    const decoded = decodeURIComponent(xsrfCookie);",
+                  "    pm.collectionVariables.set('xsrfToken', decoded);",
+                  "    console.log('XSRF-TOKEN guardado:', decoded);",
+                  "} else {",
+                  "    console.log('No se encontró la cookie XSRF-TOKEN');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sanctum",
+                "csrf-cookie"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/sanctum/csrf-cookie' --header 'Accept: application/json'"
+          },
+          "response": [
+            {
+              "name": "CSRF Cookie",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:42:49 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IjZ2dmZVY2lkc0czRjJNZnlmSkpCa1E9PSIsInZhbHVlIjoib0EwS1dKRUtMRXBILzdkdmQ5M0VNYU5WQWNMVDUvM0pYcTdpaTZ0dUNNWDM4WmI0emxsMnhJOUtySk80azB2OGtwNE9lRWlTWWNZK3grSVRGdXcrWE9PU2lpRGk1Mjd6SS9UdFl6OTEwUmorQ0NRbGZaRjBxTnZJWmpqZ0t5WmciLCJtYWMiOiJiMGM2NDFmMDcwNzA5ZmVlMjc0MGQxZDM1ZjdmMzBmNDg1YmZiNmQ2MzYzNTZjNDAyM2Q1M2RmODI4MzcyZTU3IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:42:49 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6ImJqd0xHbndjbTNtaXBCNktnRFZ2dXc9PSIsInZhbHVlIjoiN3d2REJzZ0JvZDRkd1NYRmR5eVdJai9hL3NKeEFTNVhxSkhxdFF4WWVUT2UyaTBoSk9OMEtDczJqdk1jRmZZZ1pjVktVaW5FZDUrRXkxdjZzVTRCS2U5eDBSTitqMEZqbkdqbFJMYlZ4RE1ldTNqYmhIRzMzeWlzV1VSZmVUNEsiLCJtYWMiOiI3OTVmYWY2M2QyNzMyMDQ0ZmZjNTkwMzU5YzkyODE5NmFmOGUyNTQ1ZTBhYWJkNTAwMjhmYmJkZDY5NmNlMTRlIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:42:49 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "CSRF Cookie",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:53:28 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6InMwL3V6TWVOUitRNDEzTnhZWjlYYmc9PSIsInZhbHVlIjoiVjMxRWZqdXVJWk5NQm5MYTlKblh5R0srUTZYbzEweHFyU3lDRHpib3ZxaFJqWVhnRXZCRnhZbGErTk0xcytBWVREb2pJUWp2TWtCdVR3WWd3UmRJZE55S2RFV29HTUlHUE5OeC85a0NiVytnMnM1dE9FYnJXRFpGYWs5dWViR1YiLCJtYWMiOiJlZmM4Yjc1MjhhNWI3NDA0ZTg0NjNiN2I1MDlmMjM4YjIzOTY1ODg4MDgzNmMyYmI0ZDc3MDg3NzcyMzg4NTFiIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:53:28 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IkJ5NmhTU3RMZWJGUWpxTmlaN3JyL3c9PSIsInZhbHVlIjoiYTJBUGY3eVUvTWRCMGtPem5ZKzU3TjNBUlF1OS9kNjJuOGJMcHVTYUpvODBXS0lpWENJMjdQVGtYSUs3STRWOXZSNy9iODRHanZQbjF2cHhVUVFrdTNkQjB4eXFqRGZMNnhGL0pZeTB3c0ZneWhWajJiUTJma2daeGM3UU4yamIiLCJtYWMiOiI3MWVjNDZhMDExMTNlNWFkODM4YTBlN2Y4NTk5MjYyNzdhYmM0NTlmNWI1ZTUyZDJlNDRhMGE0MWVmYWE1MGQwIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:53:28 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            },
+            {
+              "name": "CSRF Cookie",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:10:57 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IkZoZEU5RjRnTCtzMko1SEsvT3pjSVE9PSIsInZhbHVlIjoiOXQxU2hEUWs1eTV6bzZwWWlCSDUzdU1JNTVpQkVja2JrRzl6d3E1UUpXQkQ0a3g4QVdsTXE2V2JuODI4b25OM0plaUhuVlhLL2lqS2Qwb1JyM1poNWs1QzZwLzBjTGZQYkc4REZZV1hrQVBSUXZwbytTbkh4bXhyZGJwTEFqZ2IiLCJtYWMiOiI3YzY5ZTkwOThmOWY2YzJiYTZhNTM2NTRkMGNkY2UxMDZjYWQ2ZGY0YmZiOWI3NWFhZDBjM2QxZGRkYTg0YTgyIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:10:57 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IlNqUVUwaDVmWVRuaWxuaFN5VUxLbFE9PSIsInZhbHVlIjoiZDlhQjFsd0x2VDl1aEdRS1hTSEZhZkJPak1oMnlQTWNRODNMRkM2WXlFODZQRTkwcWNHUWxEK0JxeFpNWmxWQ0E3SU5BNkRtQmJYRWRWWGJFNk0rcHIwRWZmVzN4UCt4aGxkbGNYZVVBRHBVZUp5UnpIY0Z3emt2V0NCSHM0UkoiLCJtYWMiOiI5NjAyNDkyNGQ3MTM2YWNhMzExOGM3YmYxOGIyNzkxMGFjM2MxM2ExYzk3Mjg3YTljZjY4MDYwYTdjMDRkY2RhIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:10:57 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Register successful (status 201 or 200)', function () {",
+                  "  pm.expect([200, 201]).to.include(pm.response.code);",
+                  "});"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  "const timestamp = new Date().getTime();\r",
+                  "pm.collectionVariables.set('registerEmail', `test_${timestamp}@test.com`);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text"
+              },
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Usuario Test\",\r\n    \"email\": \"{{registerEmail}}\",\r\n    \"password\": \"Test123!\",\r\n    \"password_confirmation\": \"Test123!\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/register' --header 'Content-Type: application/json' --header 'Accept: application/json' --data '{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"password\":\"password\",\"password_confirmation\":\"password\"}'"
+          },
+          "response": [
+            {
+              "name": "Register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Usuario Test\",\r\n    \"email\": \"{{registerEmail}}\",\r\n    \"password\": \"Test123!\",\r\n    \"password_confirmation\": \"Test123!\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:46:04 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario registrado exitosamente.\",\n    \"user\": {\n        \"name\": \"Usuario Test\",\n        \"email\": \"test_1773377162527@test.com\",\n        \"role\": \"user\",\n        \"updated_at\": \"2026-03-13T04:46:04.000000Z\",\n        \"created_at\": \"2026-03-13T04:46:04.000000Z\",\n        \"id\": 20\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login successful (status 200)', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Login received cookies (Set-Cookie header present)', function () {",
+                  "  pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+                  "});",
+                  "",
+                  "// ✅ Agrega esto debajo",
+                  "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                  "",
+                  "if (xsrfCookie) {",
+                  "    const decoded = decodeURIComponent(xsrfCookie);",
+                  "    pm.collectionVariables.set('xsrfToken', decoded);",
+                  "    console.log('XSRF-TOKEN actualizado tras login:', decoded);",
+                  "} else {",
+                  "    console.log('No se encontró XSRF-TOKEN después del login');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "accept": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"{{adminEmail}}\",\r\n    \"password\": \"{{adminPassword}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/login' --header 'Content-Type: application/json' --header 'Accept: application/json' --data '{\"email\":\"{{email}}\",\"password\":\"{{password}}\"}'"
+          },
+          "response": [
+            {
+              "name": "Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"{{adminEmail}}\",\r\n    \"password\": \"{{adminPassword}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:47:41 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IjJCME5yNEZ4TWVxM1lEK2V0WW96Qmc9PSIsInZhbHVlIjoiWEpmZFEzTDdVbHFDV0FQUmFSc3pLc2ZFMVdnL3ZzR2NmSk1odHJtK0llenVhc2lCSVlsTy9XbjlDdWpTeTdTcitYZnFoeHBvZVdINXQ3dHhNTnk3VldNSjcxTUtETVBoNXVTYm9UKzVKUnNZNTE4V0UxdVlnbE9MSFBGYlI3b0ciLCJtYWMiOiJiYjU1MzUyMTA1MmQ1MzMzNjUwOGIyZTBjZTlmMDJiZjAwYTI0MzI2ZTA5YWZiNjk0NWQzMTJkYzU0ZTE3MGM5IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:47:41 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IlhYSXFveW4vZ3ZCOEZGSmhENVQwTnc9PSIsInZhbHVlIjoiZ0NPOFJ6dkxRaFlTSFlGak9BTkV2eWlHcUNYc1pwYWdRUEV5bVhFdGpUczBITDFIeUpUTjd5dDNuQUJ2WDZFK3hvem0vejI1aVhKeG1ncDJGbUEyRGRrZms3a0R3NmFiSkhoWjhmQVRrcnJjMXpXcks3VDNkN05pSVhPcUxvSzUiLCJtYWMiOiI2ZDk5MDllOTE3MzllYjJlMjQ0NjkzMzc3OGY2NThkZmZlYjFlYjNhYWZjNjgzZGRiMTI1NGRmOTExZGMzNDdhIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:47:41 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Inicio de sesión exitoso.\",\n    \"user\": {\n        \"id\": 4,\n        \"name\": \"Admin Principal\",\n        \"email\": \"admin1@test.com\",\n        \"role\": \"admin\",\n        \"created_at\": \"2026-03-12T09:02:54.000000Z\",\n        \"updated_at\": \"2026-03-12T09:02:54.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              },
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "me"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/auth/me' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Me",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:49:17 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IlVZaXprSkU1WWQ1a25XU3p6Ynp2WkE9PSIsInZhbHVlIjoiWTl2Vk9DcjNXMDJPclR0b3B6YWg4bzlOZUUxQnB4blZtOWoyaTRBVzNvY09oOEpTWlFqaEMxcHVLckdsYWY4S1RpQUtlUjA2VU9PUk52TEMvRjBCeUZ2ZXAxTmVERi94V01wdHhwUkQvc3NkZUxRaG9WSkRpWk9qR1BCMG9xTmsiLCJtYWMiOiJmMjE1ODRhOWJhMWYyNjU3M2VhYjZhNjcyZjQyMDIzYTQzOTRhMDQ2OTFjZDlhNzdhNWY0MGI0MDYyNzJlMjIxIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:49:17 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IkZJdmNJK3dML3ZwVkJ6NTdzREJNWlE9PSIsInZhbHVlIjoiZndDWUtGTzM2ZzdHTmRIbkZZUFg1RXpIeVJJZ05pOFVKODQxZG4wTkwvRTI0ZTRRSkpMdG03eWdDb0YxTU9JUC9od2gzUFpNRjRFbktoKzdkWnBKWFM0bktlVjV5bENhYnpkQkpDaXczOTVWU21xOWpzbm9sREd0WEpWWUdQMEgiLCJtYWMiOiI4NWFhZGY0Y2QyYzFjNzhiMzY2MjU0NDRmMTk1NDk4NmQwZjliY2RmNGRlMjJlOGQxNjhjN2I4Y2Q1MDEyNDFkIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:49:17 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"id\": 4,\n        \"name\": \"Admin Principal\",\n        \"email\": \"admin1@test.com\",\n        \"role\": \"admin\",\n        \"created_at\": \"2026-03-12T09:02:54.000000Z\",\n        \"updated_at\": \"2026-03-12T09:02:54.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              },
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/logout' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Logout",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:50:39 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6ImV0c2hicjBJYytVK1dBT2FVbzZkaXc9PSIsInZhbHVlIjoiZDZOa3JvZjF2VkNtcUlWNUpQNi9aSEFkalYxb0NULy9pZWMzM2hEcFBISDJxak9tSlBKQkpKS0grLzFmM1k1RENIanQ5QlFCZ0lNT0grVXZ5MGFOd2xPRG1BZ3dFbFYyOUN2VWIySzAwNjJadFBkKzNQNFJNSUNyY1UyWDVYaVIiLCJtYWMiOiIzNzMxNjVhNjJmNGY3NTUzMjgzYzE5YjQ0OWVmZWIwY2NjMWEwZTI4NjVjOGI5ZWQ0Yjk2NzYwNTY5ZjkxNzBkIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:50:39 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6ImJNZTQ2dlpVZ3Y2dGE1bHE3WCtxdGc9PSIsInZhbHVlIjoiS3cvSHRQZ2ZHRERMTDdxSEtRM0JTc2llRnJIeGpEMzBGaURXWjZtM3kxTW5ocXEwNnl5eDV2U2JlcHlna2xITUhRWXBtc3Jvb2ovYUZ2VDd1bm1UMUZtdWFDaUZJVkFiekdUajdMZ2h0ZUt2Rk1HQ05vcnhLU1FJR09OdFdCV0ciLCJtYWMiOiJlOWE3MzdlZDRhY2MzMjAwMjVhZDJhN2FjZmEwMjFhY2VkYmVlOGRlMWM3NTYwNzdlMjQ4ZWNmMWY0MTlkMThjIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:50:39 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Sesión cerrada correctamente.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Index (Products)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/products' --header 'Accept: application/json'"
+          },
+          "response": [
+            {
+              "name": "Index (Products)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:54:26 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IjRaU0VWc2N5Zy9KK1BDQkNFbVB5b0E9PSIsInZhbHVlIjoiQitaQS94UTNwRzc3ejRwWHN1emhUWGVpZ0xCUXJwYUJtSnU5TVJtTVN2QTZIR2w1M0h5ZXRuWW1Zc01TaWpJSmVDZ2R1Vnl1QkdyK3dJUnZQV2F0QkVLREs4U1BDdHVQQmE5ME8rLzJNeUo4SHBNTEl5WDV3bUhWWGtUc2hFL3EiLCJtYWMiOiIxOTNlODU2NGNmNjM1NzhlNjRjYzBkYzE1MDhlMzZiOTgwZTgyNGQ2OTFkM2ExY2U1NmMzZTg4OGZjMDA5ZmJmIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:54:26 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IndQTmVadkRhWFJjVUJUbDVnSDhKQVE9PSIsInZhbHVlIjoiZ2dxL1ZWSU1xeW5tYTB2a1gwQUYyckZTcW5Cc3dtTGlnb1RCczhsQXdyUFE1YzRJaDJxc1FXcEhlZ3BkUDI5dVNESkphSStnMFNzbkZKUEh5TjVQUEx3Z1Q3OGxDdFJvcGNwRFRiVjkxVFBqY1JTUU1oMUhuR2dYVC9zei82eDUiLCJtYWMiOiJjNmE2MzEyNzE2NDAyZjZjODc4OTY5ZTM4MjI2NzU1MzEwMDczYjQxYjNiNDZjNjJhNjUxMzllYzYzNjRjNjIxIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:54:26 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"products\": [\n        {\n            \"id\": 3,\n            \"name\": \"Laptop HP\",\n            \"description\": \"Laptop de alto rendimiento\",\n            \"price\": \"1600.00\",\n            \"stock\": 0,\n            \"created_at\": \"2026-03-12T22:35:04.000000Z\",\n            \"updated_at\": \"2026-03-13T02:34:37.000000Z\"\n        },\n        {\n            \"id\": 12,\n            \"name\": \"Laptop Dell XPS\",\n            \"description\": \"Laptop de alto rendimiento\",\n            \"price\": \"1400.00\",\n            \"stock\": 20,\n            \"created_at\": \"2026-03-13T04:54:01.000000Z\",\n            \"updated_at\": \"2026-03-13T04:54:01.000000Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Show (Product)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "{{productId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/products/{{productId}}' --header 'Accept: application/json'"
+          },
+          "response": [
+            {
+              "name": "Show (Product)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/{{productId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "{{productId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:56:39 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6Ijg5cnRMdXl4b3FXYXNsY3ZUVUhlc3c9PSIsInZhbHVlIjoiU1BQTVlieWNVOEdTRVUyMXRueTBXdWxCd2creWVYYWR6eHR1ODU0dGluQWFONXJ0OGF6WVhYNk5uSEVXY1psdXBGbHluK0hBL1NLdjFEUysrNElJTUdoOEpwRll1MWlSUno4clRnTWhzM3dBUXhSTXlVSVFTMGllcDRWcUlKVGQiLCJtYWMiOiJhNzcwYzdjZTJlMjk5YjFiNTJmNzVlMWRlZjhiNTBlNzA5Mzc3NTdiMjRhZjQ3MjQ3NzU3NmRkYmMzNDA5Mjc0IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:56:39 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IlNyN3YzbnBmcE5DUy9KTTRqVS9hOHc9PSIsInZhbHVlIjoiWUI4NEYwVDBZa09rVFhHZHMzWDVKUXdvcG5IYUtnaExVWE1jNDFJUVY3dDNnSVdBQXpKL0lrVlJZUStYMXFXUVB1b0dMc0w5Z1FFMHJCYTd2VG41WU4rWnFCSVYwcG1keWxTaWhQUGlPTS8zVkpUcmJUOVNPZ1NoVnRMcmlFL1giLCJtYWMiOiIxNTJkYzlmMmExNzQ0NTlkODM2MWI3MTIzMTZkYmNkZGY3ZGI3YjhkNzUwZjIwNWY1YTNhNGFlOTc0NmUxMWJhIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:56:39 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"product\": {\n        \"id\": 12,\n        \"name\": \"Laptop Dell XPS\",\n        \"description\": \"Laptop de alto rendimiento\",\n        \"price\": \"1400.00\",\n        \"stock\": 20,\n        \"created_at\": \"2026-03-13T04:54:01.000000Z\",\n        \"updated_at\": \"2026-03-13T04:54:01.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Store (Product)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "if (json.product) {\r",
+                  "    pm.collectionVariables.set('productId', json.product.id);\r",
+                  "    console.log('productId guardado:', json.product.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Laptop Dell XPS\",\r\n    \"description\": \"Laptop de alto rendimiento\",\r\n    \"price\": 1400.00,\r\n    \"stock\": 20\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/products' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"Product name\",\"price\":0,\"stock\":0}'"
+          },
+          "response": [
+            {
+              "name": "Store (Product)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Laptop Dell XPS\",\r\n    \"description\": \"Laptop de alto rendimiento\",\r\n    \"price\": 1400.00,\r\n    \"stock\": 20\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:54:01 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6ImRmMnhpSlpNRUNabzY0NjdxU3JMbWc9PSIsInZhbHVlIjoibmFza1piczVydExPL1JCbVpaYmdYbmQ2WEIrWTJ6WXpYWG80aTlrOE1lRVNuUDBGb0V1dDhiMzA4NG9TQmd4Q2NoMGJmMTVRUlJXUXBHS3ltZnhxaHV3dUpkL0c1YkVPR0hNL0c2MWZaOEpMVGFjd1pFZkhOMzdHZUMvcm5YVzAiLCJtYWMiOiI1ODFiZjMwYWM1MWI2ZmJkZmFhYWVlOGQ1Y2IwNGIzMDUyYTJkNTljYzdlN2U4ZDkyYjY4ZjU2MGZiODY3YzRkIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:54:01 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6InB2cjh2RmRoOXRZR25WTXdFaWltc0E9PSIsInZhbHVlIjoiS05oVDhLVUkrN29EeDVvdGNaTDRyTXFYenIrVStCL1ZuUldKNyszeEM2UXhnbnRFZzZlRGZScTh1VTR1RC9ldHpxdWduRUF2N3NvVU5IK0RGV0Q3Zm5tYXZpbkQ1TmJEY2RENlkvNWpJZkVWY3A2NkVuY2Z4eGtQa0tVRzVEQjYiLCJtYWMiOiJhYmE2YTQ5ZjNjNjdhYmMzZGQ2ZTlmMDQzZTdhZjJmMjkzNDgzYTc0ZDk2ODExZWNlMWRiZTRlODNmMjBhNjE2IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:54:01 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Producto creado exitosamente.\",\n    \"product\": {\n        \"name\": \"Laptop Dell XPS\",\n        \"description\": \"Laptop de alto rendimiento\",\n        \"price\": \"1400.00\",\n        \"stock\": 20,\n        \"updated_at\": \"2026-03-13T04:54:01.000000Z\",\n        \"created_at\": \"2026-03-13T04:54:01.000000Z\",\n        \"id\": 12\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update (Product)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"name\":\"Updated name\",\"price\":1600,\"stock\":15}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/products/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "{{productId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request PUT '{{baseUrl}}/api/products/{{productId}}' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"Updated name\",\"price\":0,\"stock\":0}'"
+          },
+          "response": [
+            {
+              "name": "Update (Product)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\"Updated name\",\"price\":1600,\"stock\":15}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/{{productId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "{{productId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:57:23 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6Ino4Mk4wL01TeWdERVNGRWRYc0dXdUE9PSIsInZhbHVlIjoiWUdKNW9uYmxER2QzcmczcTJMSEYyenZEbDZXVWY2bG4wT3hPTDEvemxFSUkyOCtiSThaN2x0Zm5DY3JIeXJZSVRvU3VTVThhMlh4OG9YeE41Q3ZIMHp0SFIzMVdYVERONlVaR2hGcDNFaE45RFJKL3ZFc2VicjgxK2ozSEJ5bXYiLCJtYWMiOiJkY2Q0ZTZjZmNmNWZmYzA5MWM4NzI4NzFhZTc5MDAyZjVlN2FlNDIzNzI4YTJkYzNiM2I1YzdmZjAyMzc1NDk0IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:57:23 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IkxwRkF4UGxsTEpxTFhyV2lETE4vdHc9PSIsInZhbHVlIjoiMG1XbWkzK2FZamVnL2RvNTN3SmJBOVk1WVlxSDJMcnZTN2N3L0o3SEhKY1NvbjN5NTE0YmV1cHZmcUhIRy9BNlh4R3BGbUZGbmJmd1E0N2VMTkhGamIrVmdWdGZ4Mk5xQm43TzRGM1JhODBvckNXbHRkT2tITG9QMTFUVW5jK3MiLCJtYWMiOiIyMjJiMzYzNGM0NjU2ODM2MmFiMmJmNmE4ZDdjNmJlMGNkOTQwYjU2ZjAyM2UwZmY5ODViNTViOGU0NzE0NzEyIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:57:23 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Producto actualizado exitosamente.\",\n    \"product\": {\n        \"id\": 12,\n        \"name\": \"Updated name\",\n        \"description\": \"Laptop de alto rendimiento\",\n        \"price\": \"1600.00\",\n        \"stock\": 15,\n        \"created_at\": \"2026-03-13T04:54:01.000000Z\",\n        \"updated_at\": \"2026-03-13T04:57:23.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Destroy (Product)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/{{productId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "{{productId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request DELETE '{{baseUrl}}/api/products/{{productId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Destroy (Product)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/{{productId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "{{productId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:57:56 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6InhDZkZnbzg3eDNDd2FVczhQekVhaFE9PSIsInZhbHVlIjoidXozSGZId1BuZjhYOVJHNXJneUVjOXNubUtLNWtwUzZ1aGJpbTZDL0Evb2dLb0xDR1VjeGhreHNtbFJSc1hrdGFzTVNqQU1FK1RQbzE5amRUakw4RFg1ZHA1aWxEbjIzVnRFVFhndG1IVUlQa0FKVUpRT0lVc3gxcW9CRGlVdFciLCJtYWMiOiJjNmQyMWI1MzI5YTkyNTc1MjJhNzRmNWZjOWQ2M2YxMWIyMmM5ZGQ0MGQ5NjgzMDcwOGViNjRiYzdlZTkwYTY1IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:57:56 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IjZzNFF1ODh1UzFtVjl5c0hNLzZ2V0E9PSIsInZhbHVlIjoiUGJPUlMwdzd0TnBqZmRLNkdXak5HVFpMTXVVYTJOeGlVQUVIQkd2K0Y1c1pXYjNPNGI4WE9rUjNNK3pRd1lhRUo2cDNVVzQrcHBUMlRoNW41WDA3WUpUbzA3NzJQWGJFcTlkRXBiUEdBVnhPV2kyeXFqZFlkRWllUXpaN2NjN0EiLCJtYWMiOiJkNTdkNDIxZjUzNTBjYjViM2Q4NTkxOWU2YjA4NjQ4N2FiODdkMzcxZmJlNTg4N2I2ZjkxZDA2M2M5YWNmNTI2IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:57:56 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Producto eliminado exitosamente.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/logout' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Logout",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "logout"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:58:37 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6InpucHc0enJFSXowdldYdTJBZXlBNWc9PSIsInZhbHVlIjoiSG16ZmFWLzhoSzEzNmRlTnhja2JuZUk2dWUzK3hHK1FIUFNRTS9rRXBzQUllalFPUFFOZHl1WGw0S2ord0FDalhTdGxzQTErbm1KcTBKT3l5S0R5ZW5neG5VVkxhQVVxU0FPeWtHR3FYRmhVYWl3SW96dTMvcUwwQ2MxcjVEWWsiLCJtYWMiOiJiODUzODI1ZWU3NGIyM2EyMzc5NGRjNDNiMzU0NGM3N2E5MjA0NmVjZTNjNzgyOTdjMjY1ZDNmMmZjZGY3OTljIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:58:37 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6ImNMOG5BamNtd0p5Wi9FdytnQ0lXZnc9PSIsInZhbHVlIjoiS2VlTW1EMmFDWENhbWJFTi9Iam9XRUJyZWhiZDFnODhScnk4d1gzR3pZSWtjM0p5NTM0ZVBXNDFQUlN1b3NvSEt0RWxPbHdveVE1ME1HRnliODZIRnpHUGllYTczYVpDR2s3Vnh2MTRpWWZET0tjeFJXbHhmRGVyNVM1R2VWck4iLCJtYWMiOiJkOGE5ODkzNGM3ZGM3MWIzNTcyMGY0ZTI5YTU2ZDM2N2E5ODAyYzgzMTM5YzlhMTJlYTQ5NDk0ZThiYzVjYTRiIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:58:37 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Sesión cerrada correctamente.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "CSRF Cookie",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                  "",
+                  "if (xsrfCookie) {",
+                  "    const decoded = decodeURIComponent(xsrfCookie);",
+                  "    pm.collectionVariables.set('xsrfToken', decoded);",
+                  "    console.log('XSRF-TOKEN guardado:', decoded);",
+                  "} else {",
+                  "    console.log('No se encontró la cookie XSRF-TOKEN');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sanctum",
+                "csrf-cookie"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/sanctum/csrf-cookie' --header 'Accept: application/json'"
+          },
+          "response": [
+            {
+              "name": "CSRF Cookie",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:58:52 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6Ilg0bXJpZ3Y2SVN5eHo3ek4wSkx1SkE9PSIsInZhbHVlIjoidjN4VUZDc2phOHFRcUNmeVFZRDVyUkM0aFJxTUdDOG1LRWtnSVorM3c3RzJTLzFsN0twTXhObGMwaDM5SXdTV2Erek90NGxTYThQc0V6T0VNRDBVMTRXZmhuamFCRlFIQ2d4bnRJeE5KZTF4TExmcHFERFcvV05TSHp4amhhWCsiLCJtYWMiOiJiZmJjNjIyY2ZlZDc2NjM5ZDk5YTVkNDkxNzc4NzNiNTViNDRkYjE5NmZhM2M3ODk3YjcxOTY1YjkxYjBmODRjIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:58:52 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6ImlIODFKSUFlbkNEeGtIRWt6RlYyUXc9PSIsInZhbHVlIjoicmxrbDBJYXJPME80bDBIZXArRHJ1UXhQOWRYKzhFbGxnWGZkRVhlVGZMR2NWTlU2R0pKRFdMTnIwU0xjTlZlMCs5d1poL1NNeVNLNXRLcFd6VWh1aGx4NE04VXR2T1l1L1V5bFpsOG10cG0wa3VxYnV0OXJjenFsYlJHMmdXREQiLCJtYWMiOiJjMGFmNjJjNTc4YmEwYzUyZGY3NTY1OGFhNzZlNjg2MTkxMTY2YzU5ZDkwMjAzZDc4MTY0YjQ3YTc1MzU5YWM4IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:58:52 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": null
+            }
+          ]
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Login successful (status 200)', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Login received cookies (Set-Cookie header present)', function () {",
+                  "  pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+                  "});",
+                  "",
+                  "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                  "",
+                  "if (xsrfCookie) {",
+                  "    const decoded = decodeURIComponent(xsrfCookie);",
+                  "    pm.collectionVariables.set('xsrfToken', decoded);",
+                  "    console.log('XSRF-TOKEN actualizado tras login:', decoded);",
+                  "} else {",
+                  "    console.log('No se encontró XSRF-TOKEN después del login');",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/login' --header 'Content-Type: application/json' --header 'Accept: application/json' --data '{\"email\":\"{{email}}\",\"password\":\"{{password}}\"}'"
+          },
+          "response": [
+            {
+              "name": "Login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:59:12 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IlA2UERGN2lqZ2xjKzNjdHppeXBYdEE9PSIsInZhbHVlIjoiWEF3QnY2TFpNZUp0cGxIY1piRzhudk5kZmF0K2VmQ2pOQlJrZm5URU1XeTh3bmZhbmIvN2YzaGg1RXViYkRnV3c4dXBlSXZhYm5hOGZkbW5NOWFMV1YrbnY4MGc1disxek9ROVhxa3orTmw5UFgrQVJIQUY1N1dGNldOUmVLa3EiLCJtYWMiOiIzODcwNzY1NWY2OWJkN2IyMmZlNGE3YjlhNGQyMDVmNGUzM2EwM2QyNjVjYzcwOTIyNjE0NTI0MDI0ODY5NjJhIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:59:12 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IlJpL2psWGdndWVxMkRFTHI1aVU0TlE9PSIsInZhbHVlIjoiWmhOVWRob2hNdFBsUTlxSk9vZDJqd2ttY2RXOFRLVHF5MFR6WlRmWFZCc1l4cksrZGxmblh0VWlWMzROZUdrVzhUZThsbDRqSDgyRVhpNmUvcjdVNnhhczErTnNjOWprRGt5VjhFblRsMkYyQmpzOWkrcW9zM2k2Z3B2QUZCMW8iLCJtYWMiOiIyMTk0N2RiYzIxNzZlNWQzYjE0MWZiNzQwNDNiNTg1ZmI3MDVhZjY0NGJmNjVkNWJlNWM2OTY0ZWRmNTAyMzkyIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:59:12 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Inicio de sesión exitoso.\",\n    \"user\": {\n        \"id\": 7,\n        \"name\": \"Usuario Test\",\n        \"email\": \"test@test.com\",\n        \"role\": \"user\",\n        \"created_at\": \"2026-03-13T00:33:02.000000Z\",\n        \"updated_at\": \"2026-03-13T00:33:02.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Add item (Cart)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "if (json.cart && json.cart.items.length > 0) {\r",
+                  "    const itemId = json.cart.items[0].id;\r",
+                  "    pm.collectionVariables.set('cartItemId', itemId);\r",
+                  "    console.log('cartItemId guardado:', itemId);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"product_id\": 3,\r\n    \"quantity\": 1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/products/cart/add",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "cart",
+                "add"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/products/cart/add' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"product_id\":\"{{productId}}\",\"quantity\":1}'"
+          },
+          "response": [
+            {
+              "name": "Add item (Cart)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"product_id\": 3,\r\n    \"quantity\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/cart/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "cart",
+                    "add"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 04:59:51 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IlVvQnF6dEw2TS9hN0RPZ3BWb2N0b0E9PSIsInZhbHVlIjoiYlozSGh5c3hrOE01RjltK2pUaHBJd3hPUEtrd1ZTZHFIbUhLNklmbmxWNTZUN2x3TzBvU2NIVllFZm83cSt1ZTVUdUFHUzZ6MWE3NVd2Z3B4d0VtL1kxK1Z1U0UwcmRCQzl4UGhOQ2xNR0N1cGFHYU1OSDRwN1o2YzNyZkRwYWQiLCJtYWMiOiIxNzI0ZDhkZTYwMzA1OTlhMGQ1NzU3MGEzMDRmMzYwOGJiMjg4Njk3ODYxZGJkMGI0YjhiZGVlNzMzOTdlYWE0IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:59:51 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6ImxJdTE1ZzBvRFBvbVNmZVpBZXMwNFE9PSIsInZhbHVlIjoiQXBIOEpRVTVZdTdYbHdMZldkK1pTVkpkRUF6aHVQeTgzWGdFMVJGa3ppRXMvRVhnKy9HOGMvcGFnWmxQb2t2ZVArakUzeUJEQ080WXBNcVZoZ0Nrbk16b2krUG1EcmNQNm53cGdNM1pZbzFWMktnbzZpM1pJZndSckNVb0xxZEYiLCJtYWMiOiI1NGU5MTQ5OTg5MzUwMDg4ODMxMmM5ZDgxNTU4MzNmYmIwZDdmNjFlMTg4MTgwNmJmMTliNTZlYWE0NzY0NDc3IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 06:59:51 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Producto agregado al carrito.\",\n    \"cart\": {\n        \"id\": 3,\n        \"user_id\": 7,\n        \"created_at\": \"2026-03-13T02:28:41.000000Z\",\n        \"updated_at\": \"2026-03-13T02:28:41.000000Z\",\n        \"items\": [\n            {\n                \"id\": 10,\n                \"cart_id\": 3,\n                \"product_id\": 3,\n                \"quantity\": 3,\n                \"created_at\": \"2026-03-13T03:43:20.000000Z\",\n                \"updated_at\": \"2026-03-13T04:59:51.000000Z\",\n                \"product\": {\n                    \"id\": 3,\n                    \"name\": \"Laptop HP\",\n                    \"description\": \"Laptop de alto rendimiento\",\n                    \"price\": \"1600.00\",\n                    \"stock\": 0,\n                    \"created_at\": \"2026-03-12T22:35:04.000000Z\",\n                    \"updated_at\": \"2026-03-13T02:34:37.000000Z\"\n                }\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Index (Cart)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Origin",
+                "value": "http://backend.test",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/cart",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "cart"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/products/cart' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Index (Cart)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/cart",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "cart"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:02:09 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6ImJZczZVcFR4TEdNVnI5TFAxWXBjeEE9PSIsInZhbHVlIjoiMVVGcUJkb2RIa3MzeTRjZHdFZmx4VDg1UjcySTQ1MlFJWjVZMXpkOVpkZXNHR0V2VjdpYkxCNVI4c2QyT1FlWlUzTHVvWGdQRnBVQVBUeElUVjVIR3N2SmEvK01SOUJHMzIyb2oyNFJQeXhpT1Y3K3BXZDlkSTEzanhPTTRLVFYiLCJtYWMiOiJiZDI4MzdjYWY2NGJmNDM2NDNlNWUzZGI1YTYwYWJlZDk2NDVkZDc0ZTI2YWQ5MWZjZGMzYmY5YWNhOWU2YzE5IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:02:10 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6Ilg2elNycUFzUDVGNWpkaTI3dnFMNXc9PSIsInZhbHVlIjoia1J4ZWdpRzg4UGRlZUwrejg5NlRLTXMwSDQyVVRoZVl4NXFuaFYrYzhpdmNER0dBTG9taDl0WUc4VVU4ZUFwSUVRQXc0YVErNGU4c2F4NWs0TlR1QTVNL0F0YXNmREE3VGl1YU9OU0ZMQTFIam9NUmpsVitHR3EzVWtSMjlBbE8iLCJtYWMiOiJjYWRmNmU4YzIwMDY0YjQ5ZTUxMDZjZjk3YjEzZjU0NDU4ZmZhZWE2NWJiMzIwNzE3NWYwM2E4NGQzNjI3Mzg5IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:02:10 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"cart\": {\n        \"id\": 3,\n        \"user_id\": 7,\n        \"created_at\": \"2026-03-13T02:28:41.000000Z\",\n        \"updated_at\": \"2026-03-13T02:28:41.000000Z\",\n        \"items\": [\n            {\n                \"id\": 10,\n                \"cart_id\": 3,\n                \"product_id\": 3,\n                \"quantity\": 3,\n                \"created_at\": \"2026-03-13T03:43:20.000000Z\",\n                \"updated_at\": \"2026-03-13T04:59:51.000000Z\",\n                \"product\": {\n                    \"id\": 3,\n                    \"name\": \"Laptop HP\",\n                    \"description\": \"Laptop de alto rendimiento\",\n                    \"price\": \"1600.00\",\n                    \"stock\": 0,\n                    \"created_at\": \"2026-03-12T22:35:04.000000Z\",\n                    \"updated_at\": \"2026-03-13T02:34:37.000000Z\"\n                }\n            }\n        ]\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Remove item (Cart)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/products/cart/items/{{cartItemId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "cart",
+                "items",
+                "{{cartItemId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request DELETE '{{baseUrl}}/api/products/cart/items/{{cartItemId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Remove item (Cart)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/cart/items/{{cartItemId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "cart",
+                    "items",
+                    "{{cartItemId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:05:12 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IndqQXp5blJOb291TXptU1BlWXFZaXc9PSIsInZhbHVlIjoiMEVNcndLbHNtUmVZZG5BOVVGa3hrbWJINGFoMjNOQi8ya1NRSjI3ZnhPbVk5TlVMb1JEV2hXUTRyRis3aXhpclMxQlpOZGw2YkpjcmNQZGF4R1Q1dEt3RmhPcmo1bG1meFF2VytudkRwakdzMmJVZlVFaFRqd3R2RjhIemNOekYiLCJtYWMiOiJiNTFiODM1ZmE5NjJlNGViM2QxMzk3ZTY4YjA5OWRhNzZhOTNkYjkzNGMyNDdlM2RmZDM3ZjJjYzc4MzhiNmJlIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:05:12 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6InUwSVlBUDFvWVlHMmRwMnFpR0xSMnc9PSIsInZhbHVlIjoic3lxSWt1dFVsT29ldDFjQmpuUi9yUUZvenhpZ0puRXlIbk00dm5oMTcyaElOOXExN3M0MVp4T2wvV2I3MjlnMTl4dlZvbjVHTkRDOWxubW0vc0U3TlVsRi9WOGdMWVN6NUE5SUQ5QWFpaEcyb29QOGhwaXdTa0kvUXJ0TDNEMHEiLCJtYWMiOiIyMjAyMjg3NjAzYWIyOWQxZjY1Y2FmZTMwNzQ0ZWRiNDllMzk0ZWNjZjc1OTQ1M2IwN2ZjN2U4ZjA1NTA4NmMzIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:05:12 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Producto eliminado del carrito.\",\n    \"cart\": {\n        \"id\": 3,\n        \"user_id\": 7,\n        \"created_at\": \"2026-03-13T02:28:41.000000Z\",\n        \"updated_at\": \"2026-03-13T02:28:41.000000Z\",\n        \"items\": []\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Checkout (Cart)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"payment_method\":\"cash\",\"notes\":\"\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/products/cart/checkout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "cart",
+                "checkout"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/products/cart/checkout' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"payment_method\":\"cash\",\"notes\":\"\"}'"
+          },
+          "response": [
+            {
+              "name": "Checkout (Cart)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"payment_method\":\"cash\",\"notes\":\"\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/cart/checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "cart",
+                    "checkout"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:03:28 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6Imx0S0RaSDgxZHc5eWZXMVdOd2oxTEE9PSIsInZhbHVlIjoib0tQblRLMExGZm1GT05wV3ZaTkUvU2JhMm1ETnRLOEkzQ2x5VXBKUDBxT2VqV1J1T2dtTStXRWtiYThNUVFPMTZCRk8xVTl4dk9IYXlLby9kQUR2M0tQRUxGUUo1aWdYcUlydE9rakxNVDBRNS82bC9KdGNuLzNTMHZoTHlvMkoiLCJtYWMiOiI5OTQ4MmE0MTIwZThhMTA2NmNmYTcwODllMzQ4ZjY3ZWM4Mjc4NGEwMjI1MmQzYzk0ZmY3ZTcwMzI3ZWE0ZjJlIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:03:28 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6Im5tMWtlem1mWDFUL0U2eExnOVhzUHc9PSIsInZhbHVlIjoiVjJVTFRJWCt2N0tQNlFlVlE1RWVTTUxxQUJzYldtQzIyUmNoSEhrcDFhckxsYkpqcXNGRHBhM0toVW9XaS84U2VzNnhmOWJDTWM3N1Zrd1djYkdwZk91cm5iZjhSUWkvdnl3OTRiMzg3MzRyaGxRb1JQSVpNSERuaWZBdm91NDkiLCJtYWMiOiIyNTQyYzZiNWI2MWRmMmVhMjU1OTFkYjVjNjI1MGQ4NTZjZGJiZTllMWRmMTQ5NjNhMmU3ZTMwZGUyZTYwZjcwIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:03:28 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Stock insuficiente para el producto: Laptop HP.\\n                        Disponible: 0, solicitado: 3.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Index (Users)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/users' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Index (Users)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:12:10 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6Ik5JZFpLRkhZQ3hPaTdzMnlpeitJMnc9PSIsInZhbHVlIjoiUE9nL0Iyd2NtZWRHYzFrZDNBVzI2bENUam4wTmU1OTFUQURpVDNXb1RvRVgxVW9HUVJXVlQzZFRkTmRjQVFqZ0J1bkhNMXlSSUJhbEpIYm9xMjRtMzhsZFhoZ0lKaWU5TXpnclBpbXM4SGE5b2R6Y1pNNXFhTXAxK2Z4T2NvOEYiLCJtYWMiOiJhYjQyNzY2NmUxOWQ3YTBjMDViNGZhYWY5Nzg0Y2U2YjM3NDM1MWIxMTU3MDZjMTQ3OTM1OWU0Yjk3ZTliNjU4IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:12:10 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IkVUeU1XTjlPaXpacHFpY2dyUWZJd3c9PSIsInZhbHVlIjoicW5VVFhKRWpRUERhSFZZVi9wSU5IVTZVeUVaeDVMQlppK0krQWR0amptY29EVGJjYnF6ZS8xQmYwUWs3cHNBMXV4eTdoQmQ4eWovZWh3UDlNbzFXVnc4aXdPNzVUMHpnUjkwbHNPZm1vQUZ6ai9MMHhoMFl2M1ZhUzk3T3FpaTAiLCJtYWMiOiI3ZjZhYjI1MWFiNzY1M2EyZjdlYTA0ODQ0MWE4MzdiOWY2NjIxYjhjNGI1NWQxOTlhOTgyNDc2MDkwZDVkYWFmIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:12:10 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"users\": [\n        {\n            \"id\": 4,\n            \"name\": \"Admin Principal\",\n            \"email\": \"admin1@test.com\",\n            \"role\": \"admin\",\n            \"created_at\": \"2026-03-12T09:02:54.000000Z\",\n            \"updated_at\": \"2026-03-12T09:02:54.000000Z\"\n        },\n        {\n            \"id\": 6,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test2@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-12T22:48:23.000000Z\",\n            \"updated_at\": \"2026-03-12T22:48:23.000000Z\"\n        },\n        {\n            \"id\": 7,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T00:33:02.000000Z\",\n            \"updated_at\": \"2026-03-13T00:33:02.000000Z\"\n        },\n        {\n            \"id\": 9,\n            \"name\": \"Usuario Testw\",\n            \"email\": \"testee@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T02:44:50.000000Z\",\n            \"updated_at\": \"2026-03-13T02:44:50.000000Z\"\n        },\n        {\n            \"id\": 10,\n            \"name\": \"Usuario Testw\",\n            \"email\": \"testeeg@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T02:56:14.000000Z\",\n            \"updated_at\": \"2026-03-13T02:56:14.000000Z\"\n        },\n        {\n            \"id\": 11,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773371011063@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:03:32.000000Z\",\n            \"updated_at\": \"2026-03-13T03:03:32.000000Z\"\n        },\n        {\n            \"id\": 12,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773371259143@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:07:39.000000Z\",\n            \"updated_at\": \"2026-03-13T03:07:39.000000Z\"\n        },\n        {\n            \"id\": 13,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773371701394@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:15:02.000000Z\",\n            \"updated_at\": \"2026-03-13T03:15:02.000000Z\"\n        },\n        {\n            \"id\": 14,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773372110660@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:21:51.000000Z\",\n            \"updated_at\": \"2026-03-13T03:21:51.000000Z\"\n        },\n        {\n            \"id\": 15,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773372327463@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:25:28.000000Z\",\n            \"updated_at\": \"2026-03-13T03:25:28.000000Z\"\n        },\n        {\n            \"id\": 16,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773372632400@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:30:33.000000Z\",\n            \"updated_at\": \"2026-03-13T03:30:33.000000Z\"\n        },\n        {\n            \"id\": 17,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773373160456@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:39:21.000000Z\",\n            \"updated_at\": \"2026-03-13T03:39:21.000000Z\"\n        },\n        {\n            \"id\": 18,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773373395530@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T03:43:16.000000Z\",\n            \"updated_at\": \"2026-03-13T03:43:16.000000Z\"\n        },\n        {\n            \"id\": 20,\n            \"name\": \"Usuario Test\",\n            \"email\": \"test_1773377162527@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T04:46:04.000000Z\",\n            \"updated_at\": \"2026-03-13T04:46:04.000000Z\"\n        },\n        {\n            \"id\": 21,\n            \"name\": \"Usuario Nuevo\",\n            \"email\": \"nuevo@test.com\",\n            \"role\": \"user\",\n            \"created_at\": \"2026-03-13T05:11:42.000000Z\",\n            \"updated_at\": \"2026-03-13T05:11:42.000000Z\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Show (User)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/users/{{userId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Show (User)",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "{{userId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:12:30 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6InpsZFJJdHh6NDVJYnJVRmhjOEhDZkE9PSIsInZhbHVlIjoieDhuUG9JUG41ZEJPK0tjYWtUdEJaME55dnA2b0M3ZUJyWGNNWHBZQ05QRUIrT1MvMDJTZGxpUUsxaFdqc21uTEY0bHRJeTBpa0daajNJb0dmemNJb2hvNWpjZ1JMUUgrVm9hME5lR3N5YWpycjBqOWd4K1dNb1JuMTY5UXdUQ1ciLCJtYWMiOiI0MmIwNzFjOWI2OWZhOTc1YmJlZjcyNWVmYWExMzFlM2RmZjYzYWZjYzQ1YjQyMTIyNzQ2MjY1ZWJjYzkyZDBiIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:12:30 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IlNQREhUZHRhYWlKb2pRR3pYeEt2V1E9PSIsInZhbHVlIjoicm5jcDExK1BaT0k4QUR1b0hxcDBaTEo0Rzh5TjhGYWVJSVFUQVdoWkFjWnluZ3paV2VXQjBoT1IwRTVRNDBPRzBOSldQWlpmS2NTb3JxUTkwZFhjeGMxblc3M0dUc1hMbzI4S0FBRURiL2pza1NIV3h3azlFMXlSdldvSlFOWVYiLCJtYWMiOiJiM2FmZmU1MjYwMTM4NGU5YjU2MjgyMjUwZjc1ZjYyMTI4Yzg0NTQwYTNiMDFhMGZiNDJhODBiYTVjMGU0ZGNhIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:12:30 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"user\": {\n        \"id\": 21,\n        \"name\": \"Usuario Nuevo\",\n        \"email\": \"nuevo@test.com\",\n        \"role\": \"user\",\n        \"created_at\": \"2026-03-13T05:11:42.000000Z\",\n        \"updated_at\": \"2026-03-13T05:11:42.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Store (User)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const json = pm.response.json();\r",
+                  "if (json.user) {\r",
+                  "    pm.collectionVariables.set('userId', json.user.id);\r",
+                  "    console.log('userId guardado:', json.user.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Usuario Nuevo\",\r\n    \"email\": \"nuevo@test.com\",\r\n    \"password\": \"Test123!\",\r\n    \"role\": \"user\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/users' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"User name\",\"email\":\"user@example.com\",\"password\":\"password\"}'"
+          },
+          "response": [
+            {
+              "name": "Store (User)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Usuario Nuevo\",\r\n    \"email\": \"nuevo@test.com\",\r\n    \"password\": \"Test123!\",\r\n    \"role\": \"user\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:11:42 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6InVTL1Ric0VUdXFCMDNoc1RHZmVLcFE9PSIsInZhbHVlIjoiNmZlcmNuemhmdlhzMUoyUk81b2xQbU51RnI5eHZ5V015dktkQzBGUzNEVVBXaWdIMnkwT2lpVDNTZ00vTWFNcVZpQ0RLdnVIWWJPUkM1RFNkTHpIQ2haZ0Z6QnpaVC9CUExwTEZiZHF5WEoyZlEzMUVPa2s0TUVmRjdKR2VVSkMiLCJtYWMiOiJkYTc5NTRkZDE0MjI3NmFmZjRiOWNjZGNmYmJjOGVjZjFkM2NlMjNmMmI3MTZlODJjMGU0YWRlYWE2MmEzN2U3IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:11:42 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6Im5DMEZuMVdUNWJhc2x0SG1PQjJvREE9PSIsInZhbHVlIjoiaklodDM3b2luU0lnWjhPUXhFdml5aXVTMU9EVlp2ajREeEZyUnNKVEs4aTB6OG5kNGlSUUFRcTJnRXM4d01ITi9xTHhNNm4rZXYvYXVwSEF2TENLOUx2SGphNXIyeFlnS0krbm1JV21mVktQbkhUUTlqZ2FlQWxNcCttOTJzZ3UiLCJtYWMiOiJmODFjOWI4NDhmMmM1NTkzN2U4NzZjNTQwNzU0NzQzYzY5NjA2NWVjY2ZlNGJkYjdmYTc4MDIzYzc1ZWFlN2RlIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:11:42 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario creado exitosamente.\",\n    \"user\": {\n        \"name\": \"Usuario Nuevo\",\n        \"email\": \"nuevo@test.com\",\n        \"role\": \"user\",\n        \"updated_at\": \"2026-03-13T05:11:42.000000Z\",\n        \"created_at\": \"2026-03-13T05:11:42.000000Z\",\n        \"id\": 21\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update (User)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Usuario Actualizado\",\r\n    \"email\": \"actualizado@test.com\",\r\n    \"role\": \"user\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request PUT '{{baseUrl}}/api/users/{{userId}}' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"Updated user\",\"email\":\"updated@example.com\"}'"
+          },
+          "response": [
+            {
+              "name": "Update (User)",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Usuario Actualizado\",\r\n    \"email\": \"actualizado@test.com\",\r\n    \"role\": \"user\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "{{userId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:12:55 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IlpuWXRhN1hDOThIZnVPT09uOWpFM2c9PSIsInZhbHVlIjoiL3IyVFdNVDg2ZG1WQU4yYmxDbHV0TUp5SzIwZEVTQ2hTN3VzckVuanNVTzRkb3FQckVhbWM4TWg2Q0hHak1QNnhxQzcvMGVUbUlhdVVrNzVVZW5EeXQ4MjlsSVhQMFo5UkgzV1VLMGUyaWZCYTFMZnp2WDZzVlVoeWJKZ1piTjEiLCJtYWMiOiI2M2Y1MjRhYjhkOWFiY2Y3ZjhhNDQzNDI5ZDk1M2MyNjFkMjhmMjZmZGUyY2E4Y2FjNWMyMWJiY2VlNjkzZjk5IiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:12:55 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6Imxrd2JWVmVicHl3dzJ2NHNLeGlVSWc9PSIsInZhbHVlIjoibUxOdEhHNHNSd3AwOEdRL09lZFNrSHFLK2R2SnlnSHFaR1d4ZEVHdE1CcG9iVVB6TjdTYjZmLzMzMXJxV21EamFoU3diS1VWUTBvaFNOS3RubGk2akIycExBWTJoaHlNOXZDNXlaOTJSZnhCR05oTEx5bk5jc1k0dkg2d09vVzYiLCJtYWMiOiI4YTNkZmI2MjY3OGEyMGQ1NzRkNTRhNmZhNzhiNDM3NTk5Y2ZkZTFjODhkY2U4YWZhNTljOWFiNTRiNmUyMWFlIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:12:55 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario actualizado exitosamente.\",\n    \"user\": {\n        \"id\": 21,\n        \"name\": \"Usuario Actualizado\",\n        \"email\": \"actualizado@test.com\",\n        \"role\": \"user\",\n        \"created_at\": \"2026-03-13T05:11:42.000000Z\",\n        \"updated_at\": \"2026-03-13T05:12:55.000000Z\"\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Destroy (User)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-XSRF-TOKEN",
+                "value": "{{xsrfToken}}",
+                "disabled": true
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/{{userId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "{{userId}}"
+              ]
+            },
+            "description": "Generated from cURL: curl --location --request DELETE '{{baseUrl}}/api/users/{{userId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+          },
+          "response": [
+            {
+              "name": "Destroy (User)",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "{{userId}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Server",
+                  "value": "nginx/1.25.2"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.4.18"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Fri, 13 Mar 2026 05:13:23 GMT"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "http://localhost:4200"
+                },
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "true"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "XSRF-TOKEN=eyJpdiI6IjBmZ21WckwrRzM4R2IwNGkrQmU1WHc9PSIsInZhbHVlIjoiR2krNVVUeUpkbUZFa2JtdE0vVTlVNHRZa1Zac2VBODcrY1N6NVo0RlZSNkkyZHFOdkxoZW1lQnU0ZFNEOElwNy9KL2RCWU9XSE1oM2FZNUU5aC9OY0Q5Z0pDQ2xKL3ZZQzdWYWlpd1BYdGtXdVJTYTNkZjdRbVFNR1V4VlhaQ0MiLCJtYWMiOiJiMmY2M2UxYTU4MGNlODk3NThiMjcwYWQ3Y2ZiYTViNDk2MTQ1Y2FlNjhkMzliNjg2Yjg4NDE5ZmQwZGQ3MGExIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:13:23 GMT; Max-Age=7200; path=/; domain=.backend.test; samesite=lax"
+                },
+                {
+                  "key": "Set-Cookie",
+                  "value": "laravel-session=eyJpdiI6IjBRN2tHeFJZV2I5dHgyREdoNmtDOEE9PSIsInZhbHVlIjoiY2wvVW8xVExtN0R3VThMRUFlMmE3WGdPeE04VjZDN2pSRmIwSmRYWW85RUpvV2J2TmV1Qk4xKzhYbitzRC8vY1AxK0RjZ1o4Y2l6UWRTclZpS1RiRU5XMDVEYkkwcUZuMkxka29xWExibEQ5VDlwc2hVUnI4OCtHdGk2SU9kaUciLCJtYWMiOiJlNWQ0ZWIwMzcyODBiNGEzOWUxMmM0MWJhMWMwZDE4OWVmMjA5ODEzYTM2ZGJhZGZmNWQxMzJmOWJlZmE1MDBjIiwidGFnIjoiIn0%3D; expires=Fri, 13 Mar 2026 07:13:23 GMT; Max-Age=7200; path=/; domain=.backend.test; httponly; samesite=lax"
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Usuario eliminado exitosamente.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Workflows",
+      "item": [
+        {
+          "name": "Flujo de compra - User",
+          "item": [
+            {
+              "name": "CSRF Cookie",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                      "",
+                      "if (xsrfCookie) {",
+                      "    const decoded = decodeURIComponent(xsrfCookie);",
+                      "    pm.collectionVariables.set('xsrfToken', decoded);",
+                      "    console.log('XSRF-TOKEN guardado:', decoded);",
+                      "} else {",
+                      "    console.log('No se encontró la cookie XSRF-TOKEN');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/sanctum/csrf-cookie' --header 'Accept: application/json'"
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test('Login successful (status 200)', function () {",
+                      "  pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Login received cookies (Set-Cookie header present)', function () {",
+                      "  pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+                      "});",
+                      "",
+                      "// ✅ Agrega esto debajo",
+                      "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                      "",
+                      "if (xsrfCookie) {",
+                      "    const decoded = decodeURIComponent(xsrfCookie);",
+                      "    pm.collectionVariables.set('xsrfToken', decoded);",
+                      "    console.log('XSRF-TOKEN actualizado tras login:', decoded);",
+                      "} else {",
+                      "    console.log('No se encontró XSRF-TOKEN después del login');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [
+                      ""
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"{{userEmail}}\",\r\n    \"password\": \"{{userPassword}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/login' --header 'Content-Type: application/json' --header 'Accept: application/json' --data '{\"email\":\"{{email}}\",\"password\":\"{{password}}\"}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Add item (Cart)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const json = pm.response.json();\r",
+                      "if (json.cart && json.cart.items.length > 0) {\r",
+                      "    const itemId = json.cart.items[0].id;\r",
+                      "    pm.collectionVariables.set('cartItemId', itemId);\r",
+                      "    console.log('cartItemId guardado:', itemId);\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"product_id\": 3,\r\n    \"quantity\": 1\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/cart/add",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "cart",
+                    "add"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/products/cart/add' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"product_id\":\"{{productId}}\",\"quantity\":1}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Checkout (Cart)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"payment_method\":\"cash\",\"notes\":\"\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/cart/checkout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "cart",
+                    "checkout"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/products/cart/checkout' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"payment_method\":\"cash\",\"notes\":\"\"}'"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Flujo de administración - Admin",
+          "item": [
+            {
+              "name": "CSRF Cookie",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                      "",
+                      "if (xsrfCookie) {",
+                      "    const decoded = decodeURIComponent(xsrfCookie);",
+                      "    pm.collectionVariables.set('xsrfToken', decoded);",
+                      "    console.log('XSRF-TOKEN guardado:', decoded);",
+                      "} else {",
+                      "    console.log('No se encontró la cookie XSRF-TOKEN');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/sanctum/csrf-cookie' --header 'Accept: application/json'"
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test('Login successful (status 200)', function () {",
+                      "  pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Login received cookies (Set-Cookie header present)', function () {",
+                      "  pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+                      "});",
+                      "",
+                      "// ✅ Agrega esto debajo",
+                      "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                      "",
+                      "if (xsrfCookie) {",
+                      "    const decoded = decodeURIComponent(xsrfCookie);",
+                      "    pm.collectionVariables.set('xsrfToken', decoded);",
+                      "    console.log('XSRF-TOKEN actualizado tras login:', decoded);",
+                      "} else {",
+                      "    console.log('No se encontró XSRF-TOKEN después del login');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"{{adminEmail}}\",\r\n    \"password\": \"{{adminPassword}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/login' --header 'Content-Type: application/json' --header 'Accept: application/json' --data '{\"email\":\"{{email}}\",\"password\":\"{{password}}\"}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Store (Product)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const json = pm.response.json();\r",
+                      "if (json.product) {\r",
+                      "    pm.collectionVariables.set('productId', json.product.id);\r",
+                      "    console.log('productId guardado:', json.product.id);\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Laptop Dell XPS\",\r\n    \"description\": \"Laptop de alto rendimiento\",\r\n    \"price\": 1400.00,\r\n    \"stock\": 20\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/products' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"Product name\",\"price\":0,\"stock\":0}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Update (Product)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"name\":\"Updated name\",\"price\":1600,\"stock\":15}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/{{productId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "{{productId}}"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request PUT '{{baseUrl}}/api/products/{{productId}}' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"Updated name\",\"price\":0,\"stock\":0}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Destroy (Product)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/products/{{productId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "products",
+                    "{{productId}}"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request DELETE '{{baseUrl}}/api/products/{{productId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Logout",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "logout"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/logout' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Gestión de usuarios - Admin",
+          "item": [
+            {
+              "name": "CSRF Cookie",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                      "",
+                      "if (xsrfCookie) {",
+                      "    const decoded = decodeURIComponent(xsrfCookie);",
+                      "    pm.collectionVariables.set('xsrfToken', decoded);",
+                      "    console.log('XSRF-TOKEN guardado:', decoded);",
+                      "} else {",
+                      "    console.log('No se encontró la cookie XSRF-TOKEN');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sanctum/csrf-cookie",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sanctum",
+                    "csrf-cookie"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/sanctum/csrf-cookie' --header 'Accept: application/json'"
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test('Login successful (status 200)', function () {",
+                      "  pm.response.to.have.status(200);",
+                      "});",
+                      "",
+                      "pm.test('Login received cookies (Set-Cookie header present)', function () {",
+                      "  pm.expect(pm.response.headers.has('Set-Cookie')).to.be.true;",
+                      "});",
+                      "",
+                      "// ✅ Agrega esto debajo",
+                      "const xsrfCookie = pm.cookies.get('XSRF-TOKEN');",
+                      "",
+                      "if (xsrfCookie) {",
+                      "    const decoded = decodeURIComponent(xsrfCookie);",
+                      "    pm.collectionVariables.set('xsrfToken', decoded);",
+                      "    console.log('XSRF-TOKEN actualizado tras login:', decoded);",
+                      "} else {",
+                      "    console.log('No se encontró XSRF-TOKEN después del login');",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "protocolProfileBehavior": {
+                "disabledSystemHeaders": {
+                  "accept": true
+                }
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "type": "text",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"{{adminEmail}}\",\r\n    \"password\": \"{{adminPassword}}\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/login' --header 'Content-Type: application/json' --header 'Accept: application/json' --data '{\"email\":\"{{email}}\",\"password\":\"{{password}}\"}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Index (Users)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/users' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Store (User)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "const json = pm.response.json();\r",
+                      "if (json.user) {\r",
+                      "    pm.collectionVariables.set('userId', json.user.id);\r",
+                      "    console.log('userId guardado:', json.user.id);\r",
+                      "}"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                },
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "exec": [],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Usuario Nuevo\",\r\n    \"email\": \"nuevo@test.com\",\r\n    \"password\": \"Test123!\",\r\n    \"role\": \"user\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/users' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"User name\",\"email\":\"user@example.com\",\"password\":\"password\"}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Show (User)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "{{userId}}"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request GET '{{baseUrl}}/api/users/{{userId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Update (User)",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Usuario Actualizado\",\r\n    \"email\": \"actualizado@test.com\",\r\n    \"role\": \"user\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "{{userId}}"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request PUT '{{baseUrl}}/api/users/{{userId}}' --header 'Content-Type: application/json' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}' --data '{\"name\":\"Updated user\",\"email\":\"updated@example.com\"}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Destroy (User)",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users/{{userId}}",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users",
+                    "{{userId}}"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request DELETE '{{baseUrl}}/api/users/{{userId}}' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+              },
+              "response": []
+            },
+            {
+              "name": "Logout",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "disabled": true
+                  },
+                  {
+                    "key": "Origin",
+                    "value": "http://backend.test",
+                    "disabled": true
+                  },
+                  {
+                    "key": "X-XSRF-TOKEN",
+                    "value": "{{xsrfToken}}",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/auth/logout",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "logout"
+                  ]
+                },
+                "description": "Generated from cURL: curl --location --request POST '{{baseUrl}}/api/auth/logout' --header 'Accept: application/json' --header 'Authorization: Bearer {{token}}'"
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "requests": {},
+        "exec": [
+          "// Sanctum flow guard:",
+          "// Ensure you ran \"CSRF Cookie\" first so Postman has XSRF-TOKEN saved and {{xsrfToken}} set.",
+          "// Note: allow the CSRF Cookie request itself to run without this check.",
+          "",
+          "const path = (pm.request.url && pm.request.url.getPath && pm.request.url.getPath())",
+          "  ? pm.request.url.getPath()",
+          "  : '';",
+          "",
+          "if (path !== '/sanctum/csrf-cookie') {",
+          "  const token = pm.collectionVariables.get('xsrfToken');",
+          "  if (!token) {",
+          "    throw new Error('Missing xsrfToken collection variable. Run the \"CSRF Cookie\" request in the Sanctum folder first.');",
+          "  }",
+          "}",
+          "",
+          "pm.request.headers.add({",
+          "    key: 'Origin',",
+          "    value: 'http://backend.test'",
+          "});",
+          "",
+          "pm.request.headers.add({",
+          "    key: 'Accept',",
+          "    value: 'application/json'",
+          "});",
+          "",
+          "pm.request.headers.add({",
+          "    key: 'X-XSRF-TOKEN',",
+          "    value: pm.collectionVariables.get('xsrfToken')",
+          "});",
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    },
+    {
+      "key": "productId",
+      "value": ""
+    },
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "cartItemId",
+      "value": ""
+    },
+    {
+      "key": "xsrfToken",
+      "value": ""
+    },
+    {
+      "key": "adminEmail",
+      "value": ""
+    },
+    {
+      "key": "adminPassword",
+      "value": ""
+    },
+    {
+      "key": "userEmail",
+      "value": ""
+    },
+    {
+      "key": "userPassword",
+      "value": ""
+    },
+    {
+      "key": "registerEmail",
+      "value": ""
+    }
+  ]
+}
