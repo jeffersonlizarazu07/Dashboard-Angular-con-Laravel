@@ -37,21 +37,6 @@ export class AuthService {
    * Fetch CSRF cookie from Sanctum before any state-changing request.
    */
   getCsrfCookie(): Observable<void> {
-    // #region agent log
-    fetch('http://127.0.0.1:7788/ingest/9dd0ed2f-e734-4b9b-aea3-7e346eaf6a22', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '8d12e3' },
-      body: JSON.stringify({
-        sessionId: '8d12e3',
-        runId: 'pre-fix',
-        hypothesisId: 'H2',
-        location: 'src/app/core/services/auth.service.ts:getCsrfCookie',
-        message: 'Fetching CSRF cookie',
-        data: { url: `${this.sanctumUrl}/sanctum/csrf-cookie`, withCredentials: true },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion agent log
     return this.http.get<void>(`${this.sanctumUrl}/sanctum/csrf-cookie`, {
       withCredentials: true
     });
@@ -61,21 +46,6 @@ export class AuthService {
    * Register a new user.
    */
   register(data: RegisterRequest): Observable<AuthResponse> {
-    // #region agent log
-    fetch('http://127.0.0.1:7788/ingest/9dd0ed2f-e734-4b9b-aea3-7e346eaf6a22', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '8d12e3' },
-      body: JSON.stringify({
-        sessionId: '8d12e3',
-        runId: 'pre-fix',
-        hypothesisId: 'H2',
-        location: 'src/app/core/services/auth.service.ts:register',
-        message: 'Register request',
-        data: { url: `${this.apiUrl}/auth/register`, withCredentials: true },
-        timestamp: Date.now(),
-      }),
-    }).catch(() => {});
-    // #endregion agent log
     return this.http.post<AuthResponse>(
       `${this.apiUrl}/auth/register`,
       data,
