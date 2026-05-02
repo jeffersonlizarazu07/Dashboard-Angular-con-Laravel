@@ -1,0 +1,12 @@
+{
+  "name": "prueba-tecnica-lexco",
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  },
+  "scripts": {
+    "backend": "cd backend && php -S 127.0.0.1:8000 -t public",
+    "frontend": "cd frontend && npm start -- --host 127.0.0.1 --port 4201",
+    "dev": "npx concurrently \"npm run backend\" \"npm run frontend\""
+  }
+}
